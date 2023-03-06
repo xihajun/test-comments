@@ -30,3 +30,6 @@ jobs:
           COMMENT_BODY=$(echo ${COMMENTS} | jq '.[-1].body')
           echo -e "${COMMENT_BODY}" #> comments.txt
           echo ${{github.event.issue.labels.*.name}}
+          LABELS=$(curl -X GET -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.issue.number }}/labels)
+          LABELS_=$(echo ${LABELS} | jq '.[-1].body')
+          echo -e "${LABELS_}"
