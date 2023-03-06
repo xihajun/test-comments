@@ -1,0 +1,23 @@
+name: Get GitHub Comments
+
+on:
+  issue_comment:
+    types: [created]
+
+jobs:
+  OpenAI_Reply:
+    if: "contains(github.event.issue.labels.*.name, 'gitalk')"
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+    steps:
+      - name: Get Comment
+        id: get_comment
+        uses: actions/github-script@v3
+        with:
+          script: |
+            const { context } = require('@actions/github');
+            const { issue: { number }, comment: { body } } = context.payload;
+            console.log(`Issue ID: ${number}, Comment Text: ${body}`);
+            console.log(`Issue ID: ${number}, Title: ${title}, Issue Body: ${body}, Comment Text: ${body}`);
+            console.log(`Issue Labels: ${context.payload.issue.labels.map(label => label.name).join(', ')} `);
