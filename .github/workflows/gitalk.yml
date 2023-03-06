@@ -33,3 +33,11 @@ jobs:
           LABELS=$(curl -X GET -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.issue.number }}/labels)
           LABELS_=$(echo ${LABELS} | jq '.[-1].body')
           echo -e "${LABELS_}"
+          echo "Issue body: ${{ github.event.issue.body }}"
+      - name: Get Issue Body
+        uses: actions/get-issue-body@master
+        with:
+          issue_number: ${{github.event.issue.number}}
+          token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Get Link From Body
+        run: echo $(echo "${{ steps.get_body.outputs.body }}" | grep -oP '(?<=\()[^\)]+(?=\))')
