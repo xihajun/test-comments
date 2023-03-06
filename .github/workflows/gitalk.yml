@@ -41,7 +41,7 @@ jobs:
           # Check if any of the labels contains a forward slash
           if echo "$labels" | grep -q "/"; then
             echo "Label contains a forward slash"
-            echo "$labels" | grep "/"
+            echo "$labels" | grep "\/"
           else
             echo "No labels contain a forward slash"
           fi
