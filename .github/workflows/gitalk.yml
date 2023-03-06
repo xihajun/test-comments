@@ -35,4 +35,4 @@ jobs:
           echo -e "${LABELS_}"
           echo "Issue body: ${{ github.event.issue.body }}"
           echo $(echo "${{ github.event.issue.body }}" | grep -oP '(?<=\()[^\)]+(?=\))')
-          echo $(echo ${{github.event.issue.labels.*.name}}" | grep "/"
+          echo $(echo ${{github.event.issue.labels.*.name}}") | grep "/"
