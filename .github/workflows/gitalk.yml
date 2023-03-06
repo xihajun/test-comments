@@ -29,3 +29,4 @@ jobs:
           echo "Issue comments: ${COMMENTS}"
           COMMENT_BODY=$(echo ${COMMENTS} | jq '.[-1].body')
           echo -e "${COMMENT_BODY}" #> comments.txt
+          echo ${{github.event.issue.labels.*.name}}
