@@ -46,4 +46,4 @@ jobs:
           else
             echo "No labels contain a forward slash"
           fi
-          echo "${{ github.event.issue.body }}" | grep "http://127.0.0.1:8000/" | grep -o '\/[^ ]*' |sed -e 's/127.0.0.1:8000//' -e 's/^/https:\/\/raw.githubusercontent.com\/xihajun\/tmp\/main\/mkdocs\/docs/' -e 's/$/.md/'
+          echo "${{ github.event.issue.body }}" | grep "http://127.0.0.1:8000/" | grep -o '\/[^ ]*' | sed -e 's/127.0.0.1:8000\//' -e 's/\/$//' -e 's/^/https:\/\/raw.githubusercontent.com\/xihajun\/tmp\/main\/mkdocs\/docs/' -e 's/$/.md/'
