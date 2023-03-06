@@ -35,6 +35,7 @@ jobs:
           echo -e "${LABELS_}"
           echo "Issue body: ${{ github.event.issue.body }}"
           echo $(echo "${{ github.event.issue.body }}" | grep -oP '(?<=\()[^\)]+(?=\))')
+          echo "${{ github.event.issue.body }}" | grep "http://127.0.0.1:8000/"
           #echo $(echo ${{github.event.issue.labels.*.name}}") | grep "/"
           labels=$(echo "${{github.event.issue.labels.*.name}}")
 
