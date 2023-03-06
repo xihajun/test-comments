@@ -34,10 +34,4 @@ jobs:
           LABELS_=$(echo ${LABELS} | jq '.[-1].body')
           echo -e "${LABELS_}"
           echo "Issue body: ${{ github.event.issue.body }}"
-      - name: Get Issue Body
-        uses: actions/get-issue-body@master
-        with:
-          issue_number: ${{github.event.issue.number}}
-          token: ${{ secrets.GITHUB_TOKEN }}
-      - name: Get Link From Body
-        run: echo $(echo "${{ steps.get_body.outputs.body }}" | grep -oP '(?<=\()[^\)]+(?=\))')
+          echo $(echo "${{ github.event.issue.body }}" | grep -oP '(?<=\()[^\)]+(?=\))')
