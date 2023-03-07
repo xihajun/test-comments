@@ -29,7 +29,7 @@ jobs:
           echo "Issue comments: ${COMMENTS}"
           COMMENT_BODY=$(echo ${COMMENTS} | jq '.[-1].body')
           echo -e "Based on the above documents, can you let me know ${COMMENT_BODY}" > comments.txt
-          wget $(echo "${{ github.event.issue.body }}" | grep "http://127.0.0.1:8000/" | grep -o '\/[^ ]*' | sed -e 's/\/127.0.0.1:8000\/tmp\///' -e 's/\/$//' -e 's/^/https:\/\/raw.githubusercontent.com\/xihajun\/tmp\/main\/mkdocs\/docs/' -e 's/$/.md/') -O .github/promptdoc.md
+          wget $(echo "${{ github.event.issue.body }}" | grep "http://127.0.0.1:8000/" | grep -o '\/[^ ]*' | sed -e 's/\/127.0.0.1:8000\/[^\/]*\///' -e 's/\/$//' -e 's/^/https:\/\/raw.githubusercontent.com\/xihajun\/tmp\/main\/mkdocs\/docs/' -e 's/$/.md/') -O .github/promptdoc.md
           wget https://raw.githubusercontent.com/xihajun/image/main/img/aiDoc.py -O AIreply.py
 
       - name: run script
